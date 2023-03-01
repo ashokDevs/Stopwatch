@@ -1,0 +1,99 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    height: 100vh;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-weight: 800;
+    display: grid;
+    place-content: center;
+    position: relative;
+
+}
+
+.clock {
+    display: grid;
+    place-content: center;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-auto-rows:  minmax(50px,auto);
+    row-gap: 20px;
+    height: 30rem;
+    width: 30rem;
+    padding: 20px;
+    column-gap:20px;
+    border: 5px solid black;
+    border-radius: 50%;
+    place-items: center;
+    position: relative;
+    
+}
+
+.date{
+
+    grid-column: 2/4;
+    border: 3px solid black;
+    padding: 5px;
+}
+.day{
+    
+    border: 3px solid black;
+    padding: 5px; 
+}
+
+#am{
+    font-size: 2em;
+    place-self: start end;
+}
+
+#time{
+    font-size: 2.5em;
+}
+
+#sec {
+    font-size: 2rem;
+    place-self:end start ;
+}
+
+#day, #date{
+    font-size: 1.5rem;
+}
+
+.day{
+    position: absolute;
+    left: 100px;
+    bottom: 178px;
+}
+
+button {
+    height: 100px;
+    width: 100px;
+    border-radius: 50%;
+    /* z-index: 2; */
+    background-color: rgb(10, 10, 10);
+    position: absolute;
+    color: antiquewhite;
+}
+
+#stopwatch {
+    
+    top: 10%;
+    right:435px;
+    
+}
+
+#timer {
+    top:30% ;
+    left:434px;
+}
+
+#stopwatch:focus{
+    
+    background-color: azure;
+}
+#start {
+    
+    bottom:10px;
+}
