@@ -1,41 +1,72 @@
-const element=document.getElementsByTagName("body");
-const startWatch=document.getElementById("start");
-const stopwatch=document.getElementById("stopwatch");
-let timerId;
-let time;
-let sec;
+const hour=document.getElementById('hours');
+const seconds=document.getElementById('seconds');
+const minutes=document.getElementById('minutes');
+const start=document.getElementById('start');
+const stoper=document.getElementById('stop');
+const reset=document.getElementById('reset');
+
+let temp=0;
 
 
-
-
-
-timerId =setInterval(watch,1000);
-stopwatch.onclick=stopWatch; 
-
-function watch() {
-    let clock = new Date();
-    
-    time = `${clock.getHours()} : ${clock.getMinutes()}`;
-            
-    sec = clock.getSeconds();
-    let date = `${clock.getDate()}-${clock.getMonth()+1}-${clock.getFullYear()}`;
-    let am= clock.getHours()>=12 ? "pm" : "am";
-    let day = clock.getDay();
-    clock = clock.toLocaleString();
-    document.getElementById("time").innerHTML= time;
-    document.getElementById("date").innerHTML= date;
-    document.getElementById("day").innerHTML= day;
-    document.getElementById("am").innerHTML= am ;
-    document.getElementById("sec").innerHTML= sec;
+function countSeconds() {
+   
+    temp=temp+1;
+    seconds.innerHTML=temp;
+    if(temp==61){
+        temp=0;
+        temp=temp+1;
+        seconds.innerHTML=temp;
+    }
+    else if(temp==60){
+        seconds.innerHTML=0;
+    }
     
 }
+function countMinutes() {
+   
+    temp=temp+1;
+    minutes.innerHTML=temp;
+    if(temp==61){
+        temp=0;
+        temp=temp+1;
+        minutes.innerHTML=temp;
+    }
+    else if(temp==60){
+        minutes.innerHTML=0;
+    }
     
- 
-function stopWatch() {
-    time=0;
-    sec=0;
-    clearInterval(timerId);
-    document.getElementById("time").innerHTML= time;
-    document.getElementById("sec").innerHTML= sec;
-} 
+}
+function countHours() {
+   
+    temp=temp+1;
+    hour.innerHTML=temp;
+    
+    
+}
 
+
+
+start.addEventListener("click",  () => {
+    timerId=setInterval(countSeconds, 1000);
+    timerId2=setInterval(countMinutes, 60000);
+    timerId3=setInterval(countHours, 3600000);
+    start.style.visibility="hidden";
+    stoper.style.visibility="visible";
+});
+
+stoper.addEventListener("click", ()=> {
+    clearInterval(timerId);
+    clearInterval(timerId2);
+    clearInterval(timerId3);
+    reset.style.visibility="visible";
+    start.style.visibility="visible";
+    stoper.style.visibility="hidden";
+});
+
+reset.addEventListener("click", ()=>{
+    seconds.innerHTML="00";
+    minutes.innerHTML="00";
+    hour.innerHTML="00";
+    temp=0;
+
+})
